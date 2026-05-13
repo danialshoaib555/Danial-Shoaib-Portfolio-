@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { useState } from "react";
+import { imgSrc } from "@/lib/utils";
 
 const achievements = [
   { value: "89.7%", label: "Wait-time alert reduction" },
@@ -18,38 +17,13 @@ const skills = [
   { category: "Analytics", items: "KPI Tracking · SLA Monitoring · Workforce Forecasting · Queue Analytics · CSAT/NPS Analysis · Operational Reporting" },
 ];
 
-function AboutProfileImage() {
-  const [errored, setErrored] = useState(false);
-
-  if (errored) {
-    return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop"
-        alt="Danial Shoaib"
-        className="h-[420px] w-full rounded-2xl object-cover opacity-90"
-      />
-    );
-  }
-
-  return (
-    <div className="relative h-[420px] w-full overflow-hidden rounded-2xl">
-      <Image
-        src="/profile.jpg"
-        alt="Danial Shoaib"
-        fill
-        className="object-cover object-top opacity-90"
-        onError={() => setErrored(true)}
-      />
-    </div>
-  );
-}
-
 export default function AboutSection() {
   return (
     <section id="about" className="bg-black px-6 py-24 text-white">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-start">
+
+          {/* Profile card */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -57,13 +31,22 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="sticky top-24 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-3"
           >
-            <AboutProfileImage />
+            {/* Profile photo — plain <img> with basePath-aware src */}
+            <div className="overflow-hidden rounded-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imgSrc("/profile.jpg")}
+                alt="Danial Shoaib"
+                className="h-[420px] w-full rounded-2xl object-cover object-top opacity-95 transition hover:scale-[1.02] duration-500"
+              />
+            </div>
+
             <div className="mt-4 px-3 pb-3">
               <div className="text-lg font-semibold">Danial Shoaib</div>
               <div className="mt-1 text-sm text-neutral-400">
                 Supervisor – Agency Support @ HL Pro Tools / Baam LLC
               </div>
-              <div className="mt-3 flex gap-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 <span className="rounded-full border border-lime-300/20 bg-lime-300/10 px-3 py-1 text-xs text-lime-300">
                   AI Operations
                 </span>
@@ -74,6 +57,7 @@ export default function AboutSection() {
             </div>
           </motion.div>
 
+          {/* About text */}
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
               About

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import Image from "next/image";
+import { imgSrc } from "@/lib/utils";
 
 interface BlurTextProps {
   text: string;
@@ -20,7 +20,7 @@ function BlurText({
   className = "",
 }: BlurTextProps) {
   const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLParagraphElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -36,13 +36,13 @@ function BlurText({
   );
 
   return (
-    <p ref={ref} className={`inline-flex flex-wrap ${className}`}>
+    <div ref={ref} className={`flex flex-wrap justify-center ${className}`}>
       {segments.map((segment, i) => (
         <span
           key={`${segment}-${i}`}
           style={{
             display: "inline-block",
-            filter: inView ? "blur(0px)" : "blur(10px)",
+            filter: inView ? "blur(0px)" : "blur(12px)",
             opacity: inView ? 1 : 0,
             transform: inView
               ? "translateY(0)"
@@ -51,35 +51,9 @@ function BlurText({
           }}
         >
           {segment}
-          {animateBy === "words" && i < segments.length - 1 ? " " : ""}
+          {animateBy === "words" && i < segments.length - 1 ? " " : ""}
         </span>
       ))}
-    </p>
-  );
-}
-
-function ProfileImage() {
-  const [errored, setErrored] = useState(false);
-
-  return (
-    <div className="relative h-full w-full">
-      {errored ? (
-        /* eslint-disable-next-line @next/next/no-img-element */
-        <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop"
-          alt="Danial Shoaib"
-          className="h-full w-full object-cover object-top"
-        />
-      ) : (
-        <Image
-          src="/profile.jpg"
-          alt="Danial Shoaib"
-          fill
-          priority
-          className="object-cover object-top"
-          onError={() => setErrored(true)}
-        />
-      )}
     </div>
   );
 }
@@ -102,14 +76,13 @@ export default function PortfolioHero() {
       id="home"
       className="relative min-h-screen overflow-hidden bg-black text-white"
     >
-      {/* Background gradients */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(132,204,22,0.15),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.10),transparent_45%)]" />
-      {/* Subtle grid */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      {/* z-0 — Background layer */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(132,204,22,0.13),transparent),radial-gradient(ellipse_40%_40%_at_80%_80%,rgba(34,211,238,0.08),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-      {/* Fixed Navbar */}
+      {/* z-50 — Fixed Navbar */}
       <header className="fixed left-0 right-0 top-0 z-50 px-4 py-4 md:px-6 md:py-5">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-black/60 px-4 py-3 backdrop-blur-xl md:px-5">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-black/70 px-4 py-3 backdrop-blur-xl md:px-5">
           <button
             type="button"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -132,7 +105,7 @@ export default function PortfolioHero() {
         </nav>
 
         {isMenuOpen && (
-          <div className="mx-auto mt-3 max-w-7xl rounded-2xl border border-white/10 bg-black/95 p-4 backdrop-blur-xl">
+          <div className="mx-auto mt-2 max-w-7xl rounded-2xl border border-white/10 bg-black/95 p-4 backdrop-blur-xl">
             <div className="grid gap-1 sm:grid-cols-2 md:grid-cols-4">
               {menuItems.map((item) => (
                 <a
@@ -149,42 +122,57 @@ export default function PortfolioHero() {
         )}
       </header>
 
-      {/* Hero Content — pt-28 clears the fixed navbar */}
-      <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 pb-16 pt-28 text-center">
+      {/* Hero content — pt-28 clears the fixed navbar */}
+      <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 pb-16 pt-28 text-center">
+
         {/* Badge */}
-        <div className="mb-8 rounded-full border border-lime-300/25 bg-lime-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-lime-300">
+        <div className="mb-10 rounded-full border border-lime-300/25 bg-lime-300/[0.08] px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-lime-300">
           AI Operations&nbsp;&nbsp;•&nbsp;&nbsp;Support Systems&nbsp;&nbsp;•&nbsp;&nbsp;Automation
         </div>
 
-        {/* Name block with profile image sandwiched between the two words */}
-        <div className="relative flex flex-col items-center">
-          <BlurText
-            text="DANIAL"
-            delay={60}
-            animateBy="letters"
-            className="justify-center font-mono text-[13vw] font-black uppercase leading-[0.82] tracking-tighter text-lime-300 sm:text-[110px] md:text-[140px] lg:text-[175px]"
-          />
+        {/* ── Name block with profile image overlaid in center ── */}
+        <div className="relative w-full max-w-7xl">
 
-          {/* Profile image — sits between DANIAL and SHOAIB */}
-          <div className="relative z-20 my-3 h-24 w-16 overflow-hidden rounded-full border-2 border-lime-300/40 shadow-[0_0_40px_rgba(132,204,22,0.2)] sm:my-4 sm:h-32 sm:w-24 md:h-44 md:w-32 lg:h-52 lg:w-36">
-            <ProfileImage />
+          {/* z-10 — "DANIAL" behind image */}
+          <div className="relative z-10 leading-none">
+            <BlurText
+              text="DANIAL"
+              delay={55}
+              animateBy="letters"
+              className="font-mono text-[18vw] font-black uppercase tracking-tighter text-lime-300 sm:text-[160px] md:text-[180px] lg:text-[210px] xl:text-[240px]"
+            />
           </div>
 
-          <BlurText
-            text="SHOAIB"
-            delay={60}
-            animateBy="letters"
-            className="justify-center font-mono text-[13vw] font-black uppercase leading-[0.82] tracking-tighter text-lime-300 sm:text-[110px] md:text-[140px] lg:text-[175px]"
-          />
+          {/* z-30 — Profile image, absolutely centered over both text lines */}
+          <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+            <div className="h-28 w-20 overflow-hidden rounded-full border-2 border-lime-300/50 shadow-[0_0_60px_rgba(132,204,22,0.25),0_0_0_4px_rgba(0,0,0,0.6)] sm:h-36 sm:w-28 md:h-48 md:w-36 lg:h-56 lg:w-40">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={imgSrc("/profile.jpg")}
+                alt="Danial Shoaib"
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+          </div>
+
+          {/* z-10 — "SHOAIB" behind image */}
+          <div className="relative z-10 leading-none">
+            <BlurText
+              text="SHOAIB"
+              delay={55}
+              animateBy="letters"
+              className="font-mono text-[18vw] font-black uppercase tracking-tighter text-lime-300 sm:text-[160px] md:text-[180px] lg:text-[210px] xl:text-[240px]"
+            />
+          </div>
         </div>
 
         {/* Tagline */}
         <BlurText
           text="AI Operations Leader designing scalable support systems, automation workflows, and intelligent customer experience infrastructure."
-          delay={40}
+          delay={35}
           animateBy="words"
           direction="bottom"
-          className="mt-10 max-w-2xl justify-center text-sm leading-8 text-neutral-400 sm:text-base md:text-lg"
+          className="mt-10 max-w-2xl text-sm leading-8 text-neutral-400 sm:text-base md:text-lg"
         />
 
         {/* CTA buttons */}
