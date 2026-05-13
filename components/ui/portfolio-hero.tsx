@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { imgSrc } from "@/lib/utils";
 
+/* ─── BlurText ───────────────────────────────────────────────────────────── */
 interface BlurTextProps {
   text: string;
   delay?: number;
@@ -30,19 +31,21 @@ function BlurText({
     return () => observer.disconnect();
   }, []);
 
-  const segments = useMemo(
-    () => (animateBy === "words" ? text.split(" ") : text.split("")),
-    [text, animateBy]
-  );
+  const segments =
+    animateBy === "words" ? text.split(" ") : text.split("");
 
   return (
-    <div ref={ref} className={`flex flex-wrap justify-center ${className}`}>
+    <div
+      ref={ref}
+      // gap-x preserves word spacing in flex layouts (whitespace text nodes are ignored)
+      className={`flex flex-wrap justify-center ${animateBy === "words" ? "gap-x-[0.25em]" : ""} ${className}`}
+    >
       {segments.map((segment, i) => (
         <span
           key={`${segment}-${i}`}
           style={{
             display: "inline-block",
-            filter: inView ? "blur(0px)" : "blur(12px)",
+            filter: inView ? "blur(0px)" : "blur(10px)",
             opacity: inView ? 1 : 0,
             transform: inView
               ? "translateY(0)"
@@ -51,68 +54,71 @@ function BlurText({
           }}
         >
           {segment}
-          {animateBy === "words" && i < segments.length - 1 ? " " : ""}
         </span>
       ))}
     </div>
   );
 }
 
-export default function PortfolioHero() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+/* ─── PortfolioHero ──────────────────────────────────────────────────────── */
+const NAV_ITEMS = [
+  { label: "HOME", href: "#home" },
+  { label: "ABOUT", href: "#about" },
+  { label: "PROJECTS", href: "#projects" },
+  { label: "AI SYSTEMS", href: "#ai-systems" },
+  { label: "EXPERIENCE", href: "#experience" },
+  { label: "EDUCATION", href: "#education" },
+  { label: "CONTACT", href: "#contact" },
+];
 
-  const menuItems = [
-    { label: "HOME", href: "#home" },
-    { label: "ABOUT", href: "#about" },
-    { label: "PROJECTS", href: "#projects" },
-    { label: "AI SYSTEMS", href: "#ai-systems" },
-    { label: "EXPERIENCE", href: "#experience" },
-    { label: "EDUCATION", href: "#education" },
-    { label: "CONTACT", href: "#contact" },
-  ];
+const BADGES = ["AI Operations", "Support Systems", "Automation"];
+
+export default function PortfolioHero() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden bg-black text-white"
+      className="relative flex min-h-screen w-full flex-col items-center overflow-hidden bg-black text-white"
     >
-      {/* z-0 — Background layer */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(132,204,22,0.13),transparent),radial-gradient(ellipse_40%_40%_at_80%_80%,rgba(34,211,238,0.08),transparent)]" />
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      {/* ── z-0 Background ── */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(132,204,22,0.12),transparent),radial-gradient(ellipse_40%_35%_at_85%_85%,rgba(34,211,238,0.07),transparent)]" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px]" />
 
-      {/* z-50 — Fixed Navbar */}
-      <header className="fixed left-0 right-0 top-0 z-50 px-4 py-4 md:px-6 md:py-5">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-white/10 bg-black/70 px-4 py-3 backdrop-blur-xl md:px-5">
+      {/* ── z-50 Fixed Navbar ── */}
+      <header className="fixed left-0 right-0 top-0 z-50 px-4 py-3 md:px-6 md:py-4">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-black/75 px-4 py-2.5 backdrop-blur-xl md:px-5 md:py-3">
           <button
             type="button"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => setMenuOpen(!menuOpen)}
             className="text-neutral-400 transition hover:text-lime-300"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          <div className="font-mono text-base font-bold tracking-tight text-white md:text-lg">
+          <span className="font-mono text-sm font-bold tracking-widest text-white md:text-base">
             DS
-          </div>
+          </span>
 
           <a
             href="#contact"
-            className="rounded-full border border-lime-300/40 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-lime-300 transition hover:bg-lime-300 hover:text-black md:px-4 md:py-2"
+            className="rounded-full border border-lime-300/40 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-lime-300 transition hover:bg-lime-300 hover:text-black md:px-4 md:py-1.5 md:text-xs"
           >
             Contact
           </a>
         </nav>
 
-        {isMenuOpen && (
-          <div className="mx-auto mt-2 max-w-7xl rounded-2xl border border-white/10 bg-black/95 p-4 backdrop-blur-xl">
-            <div className="grid gap-1 sm:grid-cols-2 md:grid-cols-4">
-              {menuItems.map((item) => (
+        {/* Mobile / dropdown menu */}
+        {menuOpen && (
+          <div className="mx-auto mt-2 max-w-6xl rounded-2xl border border-white/10 bg-black/95 p-3 backdrop-blur-xl">
+            <div className="grid grid-cols-2 gap-1 md:grid-cols-4">
+              {NAV_ITEMS.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="rounded-xl px-4 py-3 text-sm font-semibold text-neutral-300 transition hover:bg-white/5 hover:text-lime-300"
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-xl px-4 py-2.5 text-xs font-semibold tracking-wider text-neutral-300 transition hover:bg-white/5 hover:text-lime-300"
                 >
                   {item.label}
                 </a>
@@ -122,30 +128,37 @@ export default function PortfolioHero() {
         )}
       </header>
 
-      {/* Hero content — pt-28 clears the fixed navbar */}
-      <main className="relative z-10 flex min-h-screen flex-col items-center justify-center px-4 pb-16 pt-28 text-center">
+      {/* ── Hero body — pt clears fixed navbar ── */}
+      <main className="relative z-10 flex w-full flex-1 flex-col items-center px-4 pb-16 pt-24 text-center md:pt-28">
 
-        {/* Badge */}
-        <div className="mb-10 rounded-full border border-lime-300/25 bg-lime-300/[0.08] px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-lime-300">
-          AI Operations&nbsp;&nbsp;•&nbsp;&nbsp;Support Systems&nbsp;&nbsp;•&nbsp;&nbsp;Automation
+        {/* Badge pills — three separate tags, no wrapping issues */}
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-2 md:mb-10">
+          {BADGES.map((b) => (
+            <span
+              key={b}
+              className="rounded-full border border-lime-300/25 bg-lime-300/[0.08] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-lime-300 md:text-xs"
+            >
+              {b}
+            </span>
+          ))}
         </div>
 
-        {/* ── Name block with profile image overlaid in center ── */}
-        <div className="relative w-full max-w-7xl">
+        {/* ── Name block: DANIAL / profile image / SHOAIB ── */}
+        <div className="relative w-full max-w-5xl">
 
-          {/* z-10 — "DANIAL" behind image */}
-          <div className="relative z-10 leading-none">
+          {/* z-10 — DANIAL (behind image) */}
+          <div className="relative z-10">
             <BlurText
               text="DANIAL"
               delay={55}
               animateBy="letters"
-              className="font-mono text-[18vw] font-black uppercase tracking-tighter text-lime-300 sm:text-[160px] md:text-[180px] lg:text-[210px] xl:text-[240px]"
+              className="w-full font-mono text-[22vw] font-black uppercase leading-none tracking-tighter text-lime-300 sm:text-[150px] md:text-[170px] lg:text-[200px] xl:text-[220px]"
             />
           </div>
 
-          {/* z-30 — Profile image, absolutely centered over both text lines */}
+          {/* z-30 — Profile image, absolutely centred over the two lines */}
           <div className="absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
-            <div className="h-28 w-20 overflow-hidden rounded-full border-2 border-lime-300/50 shadow-[0_0_60px_rgba(132,204,22,0.25),0_0_0_4px_rgba(0,0,0,0.6)] sm:h-36 sm:w-28 md:h-48 md:w-36 lg:h-56 lg:w-40">
+            <div className="h-20 w-[58px] overflow-hidden rounded-full border-2 border-lime-300/50 shadow-[0_0_50px_rgba(132,204,22,0.2),0_0_0_3px_rgba(0,0,0,0.7)] sm:h-28 sm:w-20 md:h-36 md:w-[104px] lg:h-44 lg:w-32 xl:h-52 xl:w-36">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={imgSrc("/profile.jpg")}
@@ -155,37 +168,39 @@ export default function PortfolioHero() {
             </div>
           </div>
 
-          {/* z-10 — "SHOAIB" behind image */}
-          <div className="relative z-10 leading-none">
+          {/* z-10 — SHOAIB (behind image) */}
+          <div className="relative z-10">
             <BlurText
               text="SHOAIB"
               delay={55}
               animateBy="letters"
-              className="font-mono text-[18vw] font-black uppercase tracking-tighter text-lime-300 sm:text-[160px] md:text-[180px] lg:text-[210px] xl:text-[240px]"
+              className="w-full font-mono text-[22vw] font-black uppercase leading-none tracking-tighter text-lime-300 sm:text-[150px] md:text-[170px] lg:text-[200px] xl:text-[220px]"
             />
           </div>
         </div>
 
-        {/* Tagline */}
-        <BlurText
-          text="AI Operations Leader designing scalable support systems, automation workflows, and intelligent customer experience infrastructure."
-          delay={35}
-          animateBy="words"
-          direction="bottom"
-          className="mt-10 max-w-2xl text-sm leading-8 text-neutral-400 sm:text-base md:text-lg"
-        />
+        {/* Tagline — fixed with gap-x so words don't merge */}
+        <div className="mt-8 max-w-xl px-2 md:mt-10 md:max-w-2xl">
+          <BlurText
+            text="AI Operations Leader designing scalable support systems, automation workflows, and intelligent customer experience infrastructure."
+            delay={25}
+            animateBy="words"
+            direction="bottom"
+            className="text-sm leading-relaxed text-neutral-400 md:text-base md:leading-8 lg:text-lg"
+          />
+        </div>
 
         {/* CTA buttons */}
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
+        <div className="mt-7 flex flex-wrap justify-center gap-3 md:mt-8">
           <a
             href="#projects"
-            className="rounded-full bg-lime-300 px-6 py-3 text-sm font-bold text-black transition hover:bg-lime-200 active:scale-95"
+            className="rounded-full bg-lime-300 px-5 py-2.5 text-sm font-bold text-black transition hover:bg-lime-200 active:scale-95 md:px-6 md:py-3"
           >
             View Projects
           </a>
           <a
             href="#contact"
-            className="rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 active:scale-95"
+            className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-white/10 active:scale-95 md:px-6 md:py-3"
           >
             Contact Me
           </a>
@@ -195,10 +210,10 @@ export default function PortfolioHero() {
       {/* Scroll indicator */}
       <a
         href="#about"
-        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 animate-bounce text-neutral-600 transition hover:text-lime-300"
+        className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 animate-bounce text-neutral-600 transition hover:text-lime-300"
         aria-label="Scroll down"
       >
-        <ChevronDown size={28} />
+        <ChevronDown size={24} />
       </a>
     </section>
   );
