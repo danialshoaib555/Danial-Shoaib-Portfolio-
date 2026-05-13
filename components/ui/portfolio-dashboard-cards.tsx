@@ -108,12 +108,17 @@ export default function PortfolioDashboardCards() {
                 viewport={{ once: true }}
                 className="group rounded-3xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-lime-300/30 hover:bg-white/[0.06]"
               >
-                <div className="mb-6 flex items-start justify-between gap-3">
+                <div className="mb-5 flex items-center justify-between gap-3">
                   <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-lime-300 shrink-0">
-                    <Icon size={22} />
+                    <Icon size={20} />
                   </div>
-                  <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-300 text-right leading-snug">
-                    {card.tools}
+                  <span className="max-w-[180px] truncate rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-300" title={card.tools}>
+                    {card.tools.split(" · ")[0]}
+                    {card.tools.split(" · ").length > 1 && (
+                      <span className="text-cyan-300/60">
+                        {" "}+{card.tools.split(" · ").length - 1}
+                      </span>
+                    )}
                   </span>
                 </div>
 

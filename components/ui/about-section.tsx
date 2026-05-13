@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { useState } from "react";
 
 const achievements = [
   { value: "89.7%", label: "Wait-time alert reduction" },
@@ -16,6 +18,33 @@ const skills = [
   { category: "Analytics", items: "KPI Tracking · SLA Monitoring · Workforce Forecasting · Queue Analytics · CSAT/NPS Analysis · Operational Reporting" },
 ];
 
+function AboutProfileImage() {
+  const [errored, setErrored] = useState(false);
+
+  if (errored) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop"
+        alt="Danial Shoaib"
+        className="h-[420px] w-full rounded-2xl object-cover opacity-90"
+      />
+    );
+  }
+
+  return (
+    <div className="relative h-[420px] w-full overflow-hidden rounded-2xl">
+      <Image
+        src="/profile.jpg"
+        alt="Danial Shoaib"
+        fill
+        className="object-cover object-top opacity-90"
+        onError={() => setErrored(true)}
+      />
+    </div>
+  );
+}
+
 export default function AboutSection() {
   return (
     <section id="about" className="bg-black px-6 py-24 text-white">
@@ -28,15 +57,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="sticky top-24 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-3"
           >
-            <img
-              src="/profile.jpg"
-              alt="Danial Shoaib"
-              className="h-[420px] w-full rounded-2xl object-cover object-top opacity-90"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src =
-                  "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop";
-              }}
-            />
+            <AboutProfileImage />
             <div className="mt-4 px-3 pb-3">
               <div className="text-lg font-semibold">Danial Shoaib</div>
               <div className="mt-1 text-sm text-neutral-400">
