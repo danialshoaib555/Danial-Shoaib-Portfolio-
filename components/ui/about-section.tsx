@@ -29,7 +29,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="sticky top-24 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-3"
+            className="md:sticky md:top-24 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-3"
           >
             {/* Profile photo — plain <img> with basePath-aware src */}
             <div className="overflow-hidden rounded-2xl">
