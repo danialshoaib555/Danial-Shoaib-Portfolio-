@@ -15,7 +15,7 @@ import {
 const cards = [
   {
     title: "Queue Optimization & SLA Recovery",
-    desc: "Redesigned queue coverage, escalation handling, and staffing alignment to reduce wait-time alerts and improve operational responsiveness.",
+    desc: "Redesigned queue coverage, escalation logic, and staffing alignment to reduce wait-time alerts and restore operational responsiveness across support workflows.",
     metric: "~89.7%",
     result: "Wait-time alert reduction",
     tools: "Modal · Slack · Airtable · KPI Dashboards",
@@ -23,15 +23,15 @@ const cards = [
   },
   {
     title: "GPT-Powered SOP Guardian",
-    desc: "Designed AI-powered SOP support systems to help agents access operational guidance faster and improve resolution consistency.",
+    desc: "Designed a prompt-engineered AI copilot delivering real-time SOP guidance, escalation instructions, and workflow support to agents without manual lookup.",
     metric: "AI",
-    result: "Support automation enablement",
+    result: "Operational AI copilot deployed",
     tools: "OpenAI · Claude · Prompt Engineering · Helpjuice",
     icon: Bot,
   },
   {
     title: "Modal Migration & Operationalization",
-    desc: "Led operational transition from Jira to Modal, creating scalable governance, escalation flows, and sustainable support workflows.",
+    desc: "Led end-to-end operational transition from Jira to Modal — designing governance structures, escalation flows, SOP alignment, and team onboarding systems.",
     metric: "Jira → Modal",
     result: "Full operational migration",
     tools: "Modal · Jira · Slack · Airtable · SOP Systems",
@@ -39,23 +39,23 @@ const cards = [
   },
   {
     title: "HUSK Quality Framework",
-    desc: "Created a structured support quality framework based on Hospitality, Understanding, Speed, and Knowledge for better coaching.",
+    desc: "Designed a structured support quality evaluation system — Hospitality, Understanding, Speed, Knowledge — enabling consistent coaching and interaction scoring.",
     metric: "HUSK",
-    result: "Quality evaluation framework",
+    result: "Quality intelligence framework",
     tools: "QA Frameworks · Coaching Systems · Support Analytics",
     icon: ShieldCheck,
   },
   {
     title: "Zoom Sentiment Analysis System",
-    desc: "Designed prompting and workflow logic for AI-based sentiment analysis across support calls to detect churn risk and quality issues.",
+    desc: "Designed AI prompting workflows for real-time sentiment analysis across support calls — detecting churn signals, quality risks, and coaching opportunities.",
     metric: "Early Risk",
     result: "Churn & quality intelligence",
     tools: "AI Sentiment Analysis · Zoom · GPT Systems",
     icon: Headphones,
   },
   {
-    title: "Shift-Glow Forecasting Dashboard",
-    desc: "Built workforce forecasting and scheduling visibility systems for peak-hour planning, overtime control, and queue balancing.",
+    title: "ShiftGlow — Workforce Intelligence Platform",
+    desc: "AI-assisted workforce forecasting and operational visibility platform designed to improve staffing intelligence, scheduling optimization, queue balancing, and operational planning.",
     metric: "24h",
     result: "Leadership coverage model",
     tools: "Airtable · Dashboards · Workforce Planning",
@@ -63,15 +63,15 @@ const cards = [
   },
   {
     title: "AI Feedback Loop System",
-    desc: "Built a human-in-the-loop concept for improving AI support quality using agent-tagged resolutions and operational feedback.",
+    desc: "Designed a human-in-the-loop framework for continuous AI quality improvement — using agent-tagged resolutions and operational signals to refine AI response accuracy.",
     metric: "Continuous",
-    result: "AI response improvement",
+    result: "AI response improvement loop",
     tools: "OpenAI · Airtable · Modal AI · Prompt Engineering",
     icon: RefreshCw,
   },
   {
     title: "ZappyChat → CloseBot Transition",
-    desc: "Supported SLA-safe operational transition and queue stabilization during post-acquisition support changes.",
+    desc: "Managed SLA-safe operational continuity and queue stabilization across a post-acquisition product transition — maintaining support performance during platform migration.",
     metric: "SLA Safe",
     result: "Continuity during migration",
     tools: "ZappyChat · CloseBot · Queue Operations",
@@ -85,14 +85,14 @@ export default function PortfolioDashboardCards() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-14 max-w-3xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-lime-300">
-            Featured Systems
+            Operational Systems
           </p>
           <h2 className="text-4xl font-semibold tracking-tight md:text-6xl">
-            Operational systems built for scale, speed, and quality.
+            Systems designed for operational intelligence and scale.
           </h2>
           <p className="mt-5 text-lg leading-8 text-neutral-400">
-            A selection of AI, automation, support operations, and workflow
-            systems created to improve team performance and customer experience.
+            A portfolio of AI-assisted operational systems, workflow automation
+            initiatives, and support infrastructure built inside real production environments.
           </p>
         </div>
 

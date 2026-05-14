@@ -9,9 +9,9 @@ const experiences = [
     period: "Oct 2025 – Present",
     type: "Full-time",
     points: [
-      "Leading Agency Support operations with focus on AI workflows, SLA control, quality systems, and operational scalability.",
-      "Implemented queue optimization, 24-hour leadership coverage, and AI-assisted support initiatives.",
-      "Overseeing team performance, operational metrics, escalation handling, and workforce planning.",
+      "Designing and deploying AI-assisted operational systems including prompt-engineered SOP copilots, quality auditing workflows, and real-time support intelligence tools.",
+      "Leading queue optimization initiatives and AI workflow experiments that reduced wait-time alerts by ~89.7% and improved queue duration by ~80%.",
+      "Driving operational scalability through AI-first process redesign, workforce forecasting systems, and structured quality frameworks across a 24-hour support operation.",
     ],
   },
   {
@@ -20,9 +20,9 @@ const experiences = [
     period: "Aug 2024 – Oct 2025",
     type: "Full-time",
     points: [
-      "Managed technical support operations for GHL-related services and contributed to AI-led process improvements.",
-      "Supported onboarding, coaching, escalation handling, and cross-functional operational execution.",
-      "Designed and deployed AI-assisted workflow systems including GPT-powered SOP guidance and queue analytics.",
+      "Built and experimented with AI copilot systems for SOP guidance, agent communication improvement, and operational workflow automation.",
+      "Developed operational intelligence frameworks including the HUSK quality system, AI feedback loops, and sentiment analysis workflows for support call analysis.",
+      "Led cross-functional support operations while driving AI-first process redesign across escalation handling, onboarding workflows, and queue management systems.",
     ],
   },
   {
@@ -31,8 +31,8 @@ const experiences = [
     period: "May 2025 – Oct 2025",
     type: "Concurrent",
     points: [
-      "Oversaw ZappyChat support after CloseBot acquisition and helped maintain SLA-safe operations during transition.",
-      "Stabilized queue operations, agent workflows, and support continuity across a high-stakes product migration.",
+      "Maintained SLA-safe operational continuity and queue performance through a high-stakes post-acquisition product migration.",
+      "Stabilized agent workflows, escalation systems, and support infrastructure during the ZappyChat to CloseBot platform transition.",
     ],
   },
   {
@@ -41,8 +41,8 @@ const experiences = [
     period: "Oct 2022 – Present",
     type: "Venture",
     points: [
-      "Co-founded AR/VR solutions venture focused on immersive experiences, customer engagement, and innovation.",
-      "Led marketing strategy, client acquisition, and product positioning for emerging tech services.",
+      "Co-founded an AR/VR solutions venture focused on immersive experience design, operational product marketing, and emerging technology services.",
+      "Led go-to-market strategy, client acquisition systems, and product positioning across immersive tech and digital experience verticals.",
     ],
   },
 ];
@@ -61,7 +61,7 @@ export default function ExperienceSection() {
           Experience
         </p>
         <h2 className="text-4xl font-semibold tracking-tight md:text-6xl">
-          Leadership across AI operations, support systems, and technical workflows.
+          Building AI systems and operational intelligence inside real support environments.
         </h2>
 
         <div className="mt-12 space-y-5">
