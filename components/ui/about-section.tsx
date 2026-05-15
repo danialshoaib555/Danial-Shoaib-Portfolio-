@@ -6,7 +6,7 @@ import { imgSrc } from "@/lib/utils";
 const achievements = [
   { value: "89.7%", label: "Wait-time alert reduction" },
   { value: "80%", label: "Queue duration improvement" },
-  { value: "2000+", label: "Technical calls & escalations managed" },
+  { value: "5+", label: "AI operational systems deployed" },
   { value: "24h", label: "Leadership coverage implemented" },
 ];
 
@@ -70,6 +70,9 @@ export default function AboutSection() {
             </p>
             <p className="mt-4 text-lg leading-8 text-neutral-400">
               I design AI-powered operational systems that improve support speed, quality, scalability, and customer experience. My Computer Science background helps me bridge technical systems, support operations, AI workflows, automation architecture, and business process optimization.
+            </p>
+            <p className="mt-4 text-base leading-8 text-neutral-500 italic border-l-2 border-lime-300/30 pl-4">
+              I&apos;m less interested in building more software for the sake of it — and more interested in understanding where operational leverage actually exists.
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2">

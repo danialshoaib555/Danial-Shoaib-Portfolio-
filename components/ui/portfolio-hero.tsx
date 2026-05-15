@@ -182,7 +182,7 @@ export default function PortfolioHero() {
         {/* Tagline — fixed with gap-x so words don't merge */}
         <div className="mt-8 max-w-xl px-2 md:mt-10 md:max-w-2xl">
           <BlurText
-            text="AI Operations Leader designing scalable support systems, automation workflows, and intelligent customer experience infrastructure."
+            text="Designing AI-assisted operational systems that reduce friction, improve workflows, and scale support intelligently."
             delay={25}
             animateBy="words"
             direction="bottom"

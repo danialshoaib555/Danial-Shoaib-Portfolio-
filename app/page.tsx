@@ -1,11 +1,14 @@
 import PortfolioHero from "@/components/ui/portfolio-hero";
 import AboutSection from "@/components/ui/about-section";
+import FlowSenseSection from "@/components/ui/flowsense-section";
+import AIWorkflowSystems from "@/components/ui/ai-workflow-systems";
 import AISystemsLab from "@/components/ui/ai-systems-lab";
 import PortfolioDashboardCards from "@/components/ui/portfolio-dashboard-cards";
 import { AISystemsLamp } from "@/components/ui/lamp";
 import ExperienceSection from "@/components/ui/experience-section";
 import AIStackSection from "@/components/ui/ai-stack-section";
 import HowIThink from "@/components/ui/how-i-think";
+import CurrentFocus from "@/components/ui/current-focus";
 import ContactSection from "@/components/ui/contact-section";
 
 export default function Home() {
@@ -17,19 +20,25 @@ export default function Home() {
       {/* 2 — About + operational metrics */}
       <AboutSection />
 
-      {/* 3 — AI Systems Lab (after metrics, before projects) */}
+      {/* 3 — Featured Prototype: FlowSense AI */}
+      <FlowSenseSection />
+
+      {/* 4 — AI Workflow Systems (internal GPT tools) */}
+      <AIWorkflowSystems />
+
+      {/* 5 — AI Systems Lab (external-facing systems) */}
       <AISystemsLab />
 
-      {/* 4 — Operational Systems (projects) */}
+      {/* 6 — Operational Systems (projects) */}
       <PortfolioDashboardCards />
 
-      {/* 5 — AI Systems spotlight lamp */}
+      {/* 7 — AI Systems spotlight lamp */}
       <AISystemsLamp />
 
-      {/* 6 — Experience */}
+      {/* 8 — Experience */}
       <ExperienceSection />
 
-      {/* 7 — Education */}
+      {/* 9 — Education */}
       <section id="education" className="bg-black px-6 py-24 text-white">
         <div className="mx-auto max-w-5xl">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-lime-300">
@@ -88,13 +97,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8 — AI Stack */}
+      {/* 10 — AI Stack */}
       <AIStackSection />
 
-      {/* 9 — How I Think (before contact) */}
+      {/* 11 — How I Think */}
       <HowIThink />
 
-      {/* 10 — Contact */}
+      {/* 12 — Current Focus */}
+      <CurrentFocus />
+
+      {/* 13 — Contact */}
       <ContactSection />
     </main>
   );
