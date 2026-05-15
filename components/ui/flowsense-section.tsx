@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Link2, FileText, FlaskConical, CheckCircle2 } from "lucide-react";
+import { ExternalLink, FlaskConical, CheckCircle2 } from "lucide-react";
 
 const whyItMatters = [
   "Support teams often lack real-time visibility into agent performance gaps before they become SLA risks.",
@@ -74,32 +74,16 @@ export default function FlowSenseSection() {
           viewport={{ once: true }}
           className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 md:p-10"
         >
-          {/* CTA buttons */}
-          <div className="flex flex-wrap gap-3 mb-10">
+          {/* CTA button */}
+          <div className="mb-10">
             <a
               href="https://flowsense-ai-chi.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-lime-300 px-5 py-2.5 text-sm font-bold text-black transition hover:bg-lime-200 active:scale-95"
+              className="inline-flex items-center gap-2 rounded-full bg-lime-300 px-6 py-3 text-sm font-bold text-black transition hover:bg-lime-200 active:scale-95"
             >
               <ExternalLink size={15} />
               Live Demo
-            </a>
-            <a
-              href="https://github.com/danialshoaib"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-white/10 active:scale-95"
-            >
-              <Link2 size={15} />
-              GitHub Repo
-            </a>
-            <a
-              href="#flowsense"
-              className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/[0.07] px-5 py-2.5 text-sm font-bold text-cyan-300 transition hover:bg-cyan-300/15 active:scale-95"
-            >
-              <FileText size={15} />
-              Case Study ↓
             </a>
           </div>
 

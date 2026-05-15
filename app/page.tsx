@@ -2,7 +2,6 @@ import PortfolioHero from "@/components/ui/portfolio-hero";
 import AboutSection from "@/components/ui/about-section";
 import FlowSenseSection from "@/components/ui/flowsense-section";
 import AIWorkflowSystems from "@/components/ui/ai-workflow-systems";
-import AISystemsLab from "@/components/ui/ai-systems-lab";
 import PortfolioDashboardCards from "@/components/ui/portfolio-dashboard-cards";
 import { AISystemsLamp } from "@/components/ui/lamp";
 import ExperienceSection from "@/components/ui/experience-section";
@@ -26,10 +25,7 @@ export default function Home() {
       {/* 4 — AI Workflow Systems (internal GPT tools) */}
       <AIWorkflowSystems />
 
-      {/* 5 — AI Systems Lab (external-facing systems) */}
-      <AISystemsLab />
-
-      {/* 6 — Operational Systems (projects) */}
+      {/* 5 — Operational Systems (projects) */}
       <PortfolioDashboardCards />
 
       {/* 7 — AI Systems spotlight lamp */}
