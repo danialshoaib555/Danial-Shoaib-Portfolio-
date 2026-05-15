@@ -18,12 +18,13 @@ export default function ContactSection() {
             Contact
           </p>
           <h2 className="text-4xl font-semibold tracking-tight md:text-6xl">
-            {"Let's build smarter support operations."}
+            {"Let's build smarter systems with AI."}
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-neutral-400">
-            Open to AI operations, support systems, automation architecture, and
-            technical leadership opportunities. Always interested in connecting
-            with forward-thinking teams.
+            Focused on AI-assisted workflows, operational intelligence, and building
+            systems that create leverage across businesses. Interested in thoughtful
+            products, automation, and AI-native experiences that improve clarity,
+            efficiency, and decision-making at scale.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-3">
